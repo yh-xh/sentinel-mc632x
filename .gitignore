@@ -1,0 +1,8 @@
+*.pre_sentinel
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+*.o
+*.a
+*.elf

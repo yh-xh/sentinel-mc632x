@@ -1,0 +1,12 @@
+diff --git a/main/CMakeLists.txt b/main/CMakeLists.txt
+index 0f4789b..48603f1 100644
+--- a/main/CMakeLists.txt
++++ b/main/CMakeLists.txt
+@@ -1132,6 +1132,7 @@ idf_component_register(SRCS ${SOURCES}
+                         esp_psram
+                         esp_netif
+                         esp_eth
++                        esp_http_client
+                         esp_driver_gpio
+                         esp_driver_uart
+                         esp_driver_spi

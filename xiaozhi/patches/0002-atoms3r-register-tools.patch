@@ -1,0 +1,32 @@
+diff --git a/main/boards/m5stack/atoms3r-echo-base/atoms3r_echo_base.cc b/main/boards/m5stack/atoms3r-echo-base/atoms3r_echo_base.cc
+index c1b5c72..31b285a 100644
+--- a/main/boards/m5stack/atoms3r-echo-base/atoms3r_echo_base.cc
++++ b/main/boards/m5stack/atoms3r-echo-base/atoms3r_echo_base.cc
+@@ -6,6 +6,7 @@
+ #include "config.h"
+ #include "i2c_device.h"
+ #include "assets/lang_config.h"
++#include "mcb_client.h"   // 控制 MC632X 摄像头板的 MCP 工具
+ 
+ #include <driver/gpio.h>
+ #include <esp_log.h>
+@@ -407,6 +408,11 @@ private:
+         });
+     }
+ 
++    // 注册对 AI 可见的工具：通过 HTTP 控制 MC632X 摄像头板（换画面源、调 ISP）
++    void InitializeTools() {
++        mcb::RegisterTools();
++    }
++
+ public:
+     AtomS3rEchoBaseBoard() : boot_button_(BOOT_BUTTON_GPIO) {
+         InitializeI2c();
+@@ -417,6 +423,7 @@ public:
+         InitializeSpi();
+         InitializeLcdDisplay(DetectLcdPanel());
+         InitializeButtons();
++        InitializeTools();
+         GetBacklight()->RestoreBrightness();
+     }
+ 
