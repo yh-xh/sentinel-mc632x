@@ -63,6 +63,10 @@ NPU 事件 → 抓拍 / 短视频 / 人流量统计 → SD 卡（/mnt/snap/left|
 M5Stack AtomS3R（小智）← HTTP 轮询 → 语音播报
 ```
 
+分层架构：
+
+![SENTINEL 系统架构分层](screenshots/images/系统架构分层.png)
+
 ## RT-Thread 使用情况
 
 | 方面 | 使用方式 |
