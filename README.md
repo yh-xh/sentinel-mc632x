@@ -37,7 +37,7 @@ SENTINEL 是一套**完全跑在本地、不依赖公网**的双摄边缘 AI 安
 </tr>
 <tr>
 <td width="50%"><img src="screenshots/images/区域留证.png" alt="周界事件留证"><br><sub>周界事件存证：AI 机位带框图；事件同时保存副机位（近景/另一角度）画面</sub></td>
-<td width="50%"><a href="screenshots/videos/视频取证.mp4">▶ 播放事件短视频（MP4）</a><br><sub>前 5 秒 + 后 5 秒，逐帧 MJPEG 播放，可下载 AVI</sub></td>
+<td width="50%"><a href="screenshots/videos/视频取证.mp4"><img src="screenshots/images/视频取证.gif" alt="事件短视频取证"></a><br><sub>事件短视频逐帧播放；<a href="screenshots/videos/视频取证.mp4">▶ 完整 MP4</a></sub></td>
 </tr>
 </table>
 
