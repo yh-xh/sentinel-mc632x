@@ -1,0 +1,62 @@
+# SENTINEL 小智端运行日志（节选）
+# 采集：idf.py -p /dev/ttyACM0 monitor
+# 说明：省略了大部分每 2 秒一次的 /api/events、/api/report/pending 轮询；
+#       时间戳为 ESP32 启动后的毫秒数。
+
+I (120757) SystemInfo: free sram: 139811 minimal sram: 33468
+I (121607) MCB: GET /api/events?n=1 -> 293 bytes
+I (121617) MCB: GET /api/report/pending -> 10 bytes
+
+I (759317) Application: Wake word detected: 小爱同学 (state: 3)
+I (759317) StateMachine: State: idle -> connecting
+I (759607) StateMachine: State: connecting -> listening
+I (759757) Application: >> 小爱同学
+I (761957) Application: << 我在呢！
+I (763087) Application: << 有什么可以帮你的吗？
+
+I (772577) Application: >> 切换屏幕。
+I (773857) Application: << % self.mc632x.switch_screen...
+I (773877) MCB: GET /api/cam?m=1 -> 7 bytes
+I (774747) Application: << 好啦，已经切换到另一路原始画面啦！
+
+I (782647) Application: >> 查询设备状态。
+I (784457) Application: << % self.mc632x.get_sysinfo...
+I (784587) MCB: GET /api/sysinfo -> 177 bytes
+I (788587) Application: << CPU 占用 18%，内存用了 12MB，温度 48 度，
+I (796897) Application: << IP 地址是 169.254.128.38，
+I (801277) Application: << 系统版本是 RT-Thread 3.1.3，固件版本是 SENTINEL 1.0。
+
+I (812097) Application: >> 暗访统计情况。
+I (814857) MCB: GET /api/stats -> 589 bytes
+I (817617) Application: << 今天进入 35 人，离开 35 人，现在画面里没有人；
+I (823137) Application: << 区域进入 31 次，离开 35 次，最长停留了 498 秒。
+
+I (834017) Application: >> 本次运行一共检测了多少次事件？
+I (834927) MCB: GET /api/events?n=10 -> 1163 bytes
+I (836027) Application: << 本次运行一共检测到了 4 次事件呢！
+
+I (850957) Application: >> 查看一下 SD 卡容量情况。
+I (852147) MCB: GET /api/space -> 36 bytes
+I (853517) Application: << SD 卡还剩 7595.9 MB，总共是 7.50 GB 呢！
+
+I (867267) Application: >> 帮我抓拍全照。
+I (868377) MCB: GET /api/snap?save=1&cam=1 -> 80 bytes
+I (869267) Application: << 好啦，已经抓拍并保存到 SD 卡啦！
+I (873037) Application: << 带 AI 叠加的，大小 33 KB。
+
+I (887657) Application: >> 设置为布防模式。
+E (891597) MCP: tools/call: 摄像头板没有响应，请检查网络
+I (904177) Application: >> 布置防护。
+I (906017) MCB: GET /api/arm?on=1 -> 8 bytes
+I (906717) Application: << 好啦，已经布防成功啦！
+
+I (935797) MCB: announce seq=7 kind=1 (区域停留/拍照)
+I (940417) Application: >> 检测到区域内有人员停留，已拍照取证。
+I (941957) Application: << 检测到区域内有人停留，已经拍照取证了，真棒！
+
+I (953737) MCB: announce seq=9 kind=0 (通过/录像)
+I (958377) Application: << 好嘞！
+I (959487) Application: << 检测到有人通过，已经开始录像啦，安全有保障！
+
+# 备注：日志里偶发 HTTP_CLIENT timeout（板端忙时轮询超时），下一轮会自动重试；
+# 上面保留了一条 set_arm 失败后重试成功的记录。

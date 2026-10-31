@@ -147,6 +147,20 @@ sentinel-mc632x/
 
 已在**全新解压的 FH_RT V3.4.0 SDK** 上验证：应用覆盖层后 `make lib` / `make app` 通过，生成的固件与发布版本的 `.text` 段（2,077,932 字节）和符号表完全一致，仅编译路径字符串与 `__DATE__/__TIME__` 不同（`.data` 相差 616 字节）。复现记录见 `mc632x/` 覆盖层与使用说明。
 
+## 小智端运行日志（节选）
+
+```text
+I (773877) MCB: GET /api/cam?m=1 -> 7 bytes
+I (814857) MCB: GET /api/stats -> 589 bytes
+I (868377) MCB: GET /api/snap?save=1&cam=1 -> 80 bytes
+I (935797) MCB: announce seq=7 kind=1 (区域停留/拍照)
+I (953737) MCB: announce seq=9 kind=0 (通过/录像)
+```
+
+日志里可以看到：小智每 2 秒轮询板端事件/报告；语音指令通过 MCP 工具调用 `/api/cam`、`/api/stats`、`/api/snap`、`/api/arm` 等接口；事件触发后本地播报。
+
+完整日志：[docs/logs/xiaozhi-runtime.log](docs/logs/xiaozhi-runtime.log)
+
 ## 演示材料
 
 - 事件短视频演示：[screenshots/videos/视频取证.mp4](screenshots/videos/视频取证.mp4)
