@@ -62,6 +62,29 @@ NPU 事件 → 抓拍 / 短视频 / 人流量统计 → SD 卡（/mnt/snap/left|
 M5Stack AtomS3R（小智）← HTTP 轮询 → 语音播报
 ```
 
+## RT-Thread 使用情况
+
+| 方面 | 使用方式 |
+| --- | --- |
+| 线程 / IPC | 业务全部以 RT-Thread 线程运行；互斥量保护 SD 与事件环，信号量驱动事件存证线程；不改动内核 |
+| DFS + elmfat | SD 挂载 `/mnt`，抓拍/录像/报告走 POSIX 文件接口，开启 `_FS_REENTRANT` 支持多线程访问 |
+| lwIP | 板端 HTTP、MJPEG 推流、RTSP、小智接口都跑在 lwIP 上；针对双路预览调大发送缓冲与接收窗口 |
+| finsh / msh | 保留 `vlcview`、`media_info`、`top`、`df`、`pinctrl` 等命令用于现场调试，并在网页终端里复用 |
+| 设备框架 | MMC、LCD、以太网、RTC 通过设备框架访问；SD 1-bit 配置在 board 层完成 |
+| Kconfig | 编码通道、MJPEG、NN、SD、RTSP 等通过 SDK 的 Kconfig 配置，应用层不写死硬件参数 |
+
+主要线程（节选）：
+
+| 线程 / 任务 | 职责 | 说明 |
+| --- | --- | --- |
+| MJPEG 发送（每路一个） | 从 VENC 取流并推送到 libmjpeg | SDK 例程线程 |
+| AI 推理（IVS） | 取 512×288 帧、NPU 推理、TAD 事件、GBOX 绘制 | SDK NNA 例程 |
+| 事件存证 `snap_evt` | 写事件图 / 短视频、维护事件环 | 优先级 140，独立线程写卡 |
+| 录像写入 `rec` | 帧队列 → MJPEG AVI 写 SD | 200ms/帧，队列 12×128KB |
+| 网页服务 `osd_web` | HTTP :8080，页面与接口 | 优先级 130，单线程 |
+| lwIP tcpip | 协议栈 | 优先级 100 |
+| 小智 EventWatcher | 轮询事件与播报请求 | 运行在 ESP32-S3 侧 |
+
 ## 关键设计
 
 - **双摄协同取证**：G1 跑 AI 并保存带框证据图，G0 同时保存无叠加原图；录像也可选任一路。
