@@ -104,6 +104,21 @@ sentinel-mc632x/
 
 完整步骤见 [docs/使用说明.md](docs/使用说明.md)。
 
+## 预编译固件（快速测试）
+
+不想先编译，可以直接用 [`firmware/`](firmware/) 下本次比赛的 MC632X 固件：
+
+| 文件 | 用途 |
+| --- | --- |
+| `sentinel_20261031_1157_9295ba47.bin` | 无头 bin，bootcmd 从 `0x120000` 读取时用 |
+| `sentinel_20261031_1157_9295ba47.img` | 带 16 字节头的镜像，厂商默认 bootcmd 从 `0x120010` 读取时用 |
+
+- 版本：SENTINEL 1.0，编译于 2026-10-31 11:57:40
+- md5：`9295ba4739f5be164a9270ceade25e60`（bin）/ `0869a07a4cc1252c36cf4a43c488b417`（img）
+- 烧录命令、bootcmd 判断和注意事项见 [firmware/README.md](firmware/README.md)。
+
+小智固件不在 `firmware/` 里，需要按使用说明第 8 节单独编译烧录。
+
 ## 可复现性
 
 已在**全新解压的 FH_RT V3.4.0 SDK** 上验证：应用覆盖层后 `make lib` / `make app` 通过，生成的固件与发布版本的 `.text` 段（2,077,932 字节）和符号表完全一致，仅编译路径字符串与 `__DATE__/__TIME__` 不同（`.data` 相差 616 字节）。复现记录见 `mc632x/` 覆盖层与使用说明。
