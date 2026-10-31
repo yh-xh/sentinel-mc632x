@@ -40,6 +40,13 @@ SENTINEL 是一套**完全跑在本地、断网可用**的双摄边缘 AI 安防
 </tr>
 </table>
 
+## 实机
+
+![SENTINEL 实机：MC632X 双摄板 + AtomS3R](screenshots/MC632x+ESP32-S3.jpg)
+
+- 富瀚 MC632X 双摄开发板（DB-XC00），板载 7 寸 800×480 RGB 屏、两路 cv2005 摄像头、microSD 与以太网；
+- M5Stack AtomS3R + Echo Base 运行小智固件，通过 Wi-Fi 调用板端 HTTP 接口完成语音播报。
+
 ## 系统架构
 
 ```text
