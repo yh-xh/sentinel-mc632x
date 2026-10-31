@@ -1,0 +1,31 @@
+choice
+    prompt "select app demo"
+    default APP_CONFIG_HELLOWORLD
+
+config APP_CONFIG_HELLOWORLD
+    bool "helloworld"
+    help
+        The helloworld demo
+
+config APP_CONFIG_SENTINEL
+    bool "SENTINEL (dual-camera AI security)"
+    select FH_ENABLE_VIDEO
+    help
+        SENTINEL: dual-camera edge AI security demo
+
+config APP_CONFIG_BSP_DEMO
+    bool "bsp demo"
+    help
+        The bsp demo
+
+config APP_CONFIG_AUDIO_DEMO
+    bool "audio demo"
+    help
+        audio demo
+
+config APP_CONFIG_AOV_DEMO
+    bool "aov demo"
+    help
+        aov demo
+endchoice
+

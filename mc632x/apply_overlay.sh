@@ -26,6 +26,20 @@ if [ ! -d "$SRC" ]; then
     exit 1
 fi
 
+# 0) 准备基础应用目录。
+# overlay 里只放“本项目改动/新增”的文件，完整应用（vendor 的 sample_common、
+# sample_demo 框架、Makefile、脚本等）仍在 SDK 的 app/media_demo 里。
+# 如果 app/sentinel 还不存在，先复制一份 media_demo 作为底座（跳过 out/）。
+APP_DIR="$SDK/rt-thread/app"
+if [ ! -d "$APP_DIR/sentinel" ] && [ -d "$APP_DIR/media_demo" ]; then
+    echo "复制基础应用: app/media_demo -> app/sentinel（不含 out/）"
+    mkdir -p "$APP_DIR/sentinel"
+    ( cd "$APP_DIR/media_demo" && tar cf - --exclude=./out . ) | ( cd "$APP_DIR/sentinel" && tar xf - )
+elif [ ! -d "$APP_DIR/media_demo" ]; then
+    echo "提示：SDK 中既没有 app/sentinel 也没有 app/media_demo，overlay 将只创建改动文件。" >&2
+    echo "      请确认 SDK 版本（FH_RT V3.4.0）或先准备好基础应用目录。" >&2
+fi
+
 added=0
 updated=0
 backed=0

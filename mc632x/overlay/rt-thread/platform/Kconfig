@@ -1,0 +1,244 @@
+config SDKROOT
+    string
+    option env="SDKROOT"
+
+menu "Platform Configuration"
+
+config RT_USING_CALIBRATE
+    bool
+
+config CONFIG_ARCH_FULLHAN
+    bool
+    select RT_USING_TIMER_SOFT
+    select RT_USING_GPIO
+    select RT_USING_CALIBRATE
+
+config CONFIG_ARCH_FH885xV200
+    bool
+    default n
+    select ARCH_ARM_ARM11
+    select CONFIG_ARCH_FULLHAN
+
+config CONFIG_ARCH_FH8626V100
+    bool
+    default n
+    select ARCH_ARM_ARM11
+    select CONFIG_ARCH_FULLHAN
+
+config CONFIG_ARCH_FH865x
+    bool
+    default n
+    select ARCH_ARM_CORTEX_A7
+    select CONFIG_ARCH_FULLHAN
+
+config CONFIG_ARCH_FH8636_FH8852V20X
+    bool
+    default n
+    select ARCH_ARM_CORTEX_A7
+    select CONFIG_ARCH_FULLHAN
+
+config CONFIG_ARCH_FH8852V301_FH8662V100
+    bool
+    default n
+    select ARCH_ARM_CORTEX_A7
+    select CONFIG_ARCH_FULLHAN
+
+config CONFIG_ARCH_FH885xV300
+    bool
+    default n
+    select ARCH_ARM_CORTEX_A7
+    select CONFIG_ARCH_FULLHAN
+
+config CONFIG_ARCH_FH885xV310
+    bool
+    default n
+    select ARCH_ARM_CORTEX_A7
+    select CONFIG_ARCH_FULLHAN
+
+config CONFIG_ARCH_FH8862
+    bool
+    default n
+    select ARCH_ARM_CORTEX_A7
+    select CONFIG_ARCH_FULLHAN
+
+config CONFIG_ARCH_MC632X
+    bool
+    default n
+    select ARCH_ARM_CORTEX_A7
+    select CONFIG_ARCH_FULLHAN
+
+config CONFIG_ARCH_FH885xV500
+    bool
+    default n
+    select ARCH_ARM_CORTEX_A7
+    select CONFIG_ARCH_FULLHAN
+
+choice
+    prompt "Choose chip"
+    default CONFIG_CHIP_FH8852V200
+
+config CONFIG_CHIP_FH8626V100
+    bool "FH8626V100"
+    select CONFIG_ARCH_FH8626V100
+
+config CONFIG_CHIP_FH8852V200
+    bool "FH8852V200"
+    select CONFIG_ARCH_FH885xV200
+
+config CONFIG_CHIP_FH8856V200
+    bool "FH8856V200"
+    select CONFIG_ARCH_FH885xV200
+
+config CONFIG_CHIP_FH8858V200
+    bool "FH8858V200"
+    select CONFIG_ARCH_FH885xV200
+
+config CONFIG_CHIP_FH8652
+    bool "FH8652"
+    select CONFIG_ARCH_FH865x
+
+config CONFIG_CHIP_FH8656
+    bool "FH8656"
+    select CONFIG_ARCH_FH865x
+
+config CONFIG_CHIP_FH8658
+    bool "FH8658"
+    select CONFIG_ARCH_FH865x
+
+config CONFIG_CHIP_FH8852V201
+    bool "FH8852V201"
+    select CONFIG_ARCH_FH8636_FH8852V20X
+
+config CONFIG_CHIP_FH8852V301
+    bool "FH8852V301"
+    select CONFIG_ARCH_FH8852V301_FH8662V100
+    help
+        supprot fh8852v301
+
+config CONFIG_CHIP_FH8662V100
+    bool "FH8662V100"
+    select CONFIG_ARCH_FH8852V301_FH8662V100
+    help
+        supprot fh8662v100
+
+config CONFIG_CHIP_FH8626V200
+    bool "FH8626V200"
+    select CONFIG_ARCH_FH8636_FH8852V20X
+
+config CONFIG_CHIP_FH8636
+    bool "FH8636"
+    select CONFIG_ARCH_FH8636_FH8852V20X
+
+config CONFIG_CHIP_FH8856V210
+    bool "FH8856V210"
+    select CONFIG_ARCH_FH885xV200
+
+config CONFIG_CHIP_FH8852V210
+    bool "FH8852V210"
+    select CONFIG_ARCH_FH885xV200
+
+config CONFIG_CHIP_FH8856V300
+    bool "FH8856V300"
+    select CONFIG_ARCH_FH885xV300
+
+config CONFIG_CHIP_FH8856V310
+    bool "FH8856V310"
+    select CONFIG_ARCH_FH885xV310
+
+config CONFIG_CHIP_FH8852V310
+    bool "FH8852V310"
+    select CONFIG_ARCH_FH885xV310
+
+config CONFIG_CHIP_FH8858V300
+    bool "FH8858V300"
+    select CONFIG_ARCH_FH885xV300
+
+config CONFIG_CHIP_FH8858V310
+    bool "FH8858V310"
+    select CONFIG_ARCH_FH885xV310
+
+config CONFIG_CHIP_FH8862
+    bool "FH8862"
+    select CONFIG_ARCH_FH8862
+
+config CONFIG_CHIP_MC632X
+    bool "MC632X"
+    select CONFIG_ARCH_MC632X
+
+config CONFIG_CHIP_FH8856V500
+    bool "FH8856V500"
+    select CONFIG_ARCH_FH885xV500
+
+config CONFIG_CHIP_FH8857V500
+    bool "FH8857V500"
+    select CONFIG_ARCH_FH885xV500
+
+endchoice
+
+config FH_FAST_BOOT
+    bool
+    default n
+
+choice
+    prompt "Choose board"
+    default CONFIG_BOARD_APP
+
+config CONFIG_BOARD_APP
+    bool "app board"
+
+config CONFIG_BOARD_TEST
+    bool "test board"
+
+config CONFIG_BOARD_FAST
+    select FH_FAST_BOOT
+    select CTL_QUAD_WIRE_SUPPORT
+    bool "fastboot board"
+
+endchoice
+
+# comment "Boot stages"
+config FH_ENABLE_SELF_LOAD_CODE
+    bool "boot in multi-stage"
+    default y
+
+if FH_FAST_BOOT
+    config CONFIG_STARTUP_TIMECOST
+        bool "fastboot startup time costs statistics"
+        default y
+endif
+
+if FH_ENABLE_SELF_LOAD_CODE
+    choice
+        prompt "Choose compress method"
+        depends on FH_ENABLE_SELF_LOAD_CODE
+        default FH_CONFIG_COMPRESS_LZO
+
+        config FH_CONFIG_COMPRESS_LZO
+            bool "LZO"
+            depends on FH_USING_LZOP
+            help
+                fastest decompression, for fastboot
+
+        config FH_CONFIG_COMPRESS_GZIP
+            bool "GZIP"
+            depends on FH_USING_ZLIB
+            help
+                balance for decompression speed and compress ratio
+
+        config FH_CONFIG_COMPRESS_LZMA
+            bool "LZMA"
+            depends on FH_USING_LZMA
+            help
+                best compression, use least flash storage space.
+    endchoice
+
+endif
+
+config FH_ENABLE_VIDEO
+    bool "Enable DSP/ISP"
+    depends on APP_CONFIG_SENTINEL
+    default n
+
+source "$SDKROOT/platform/cpu/Kconfig"
+
+endmenu
