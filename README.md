@@ -8,7 +8,7 @@ SENTINEL 是一套**完全跑在本地、不依赖公网**的双摄边缘 AI 安
 
 白天它是“客流统计员”：双路实时预览、人形检测、绊线进出统计；夜里它是“守夜人”：周界布防、事件存证、录像留证；每天早上还能让小智用一句人话汇报“进入多少人、离开多少人、峰值多少人”。
 
-![SENTINEL 看板：双路预览 + 设备状态 + 人流量统计](screenshots/双路预览+状态+人流量统计.png)
+![SENTINEL 看板：双路预览 + 设备状态 + 人流量统计](screenshots/images/双路预览+状态+人流量统计.png)
 
 ## 功能特性
 
@@ -32,18 +32,18 @@ SENTINEL 是一套**完全跑在本地、不依赖公网**的双摄边缘 AI 安
 
 <table>
 <tr>
-<td width="50%"><img src="screenshots/事件时间线+msh终端.png" alt="事件时间线与网页终端"><br><sub>事件时间线：AI 机位 / 副机位 / 视频一键取证；网页终端可直接执行 msh 命令</sub></td>
-<td width="50%"><img src="screenshots/ISP图像参数调节.png" alt="ISP 图像参数"><br><sub>双路 ISP 独立调参：亮度、对比度、饱和度、日夜、白平衡</sub></td>
+<td width="50%"><img src="screenshots/images/事件时间线+msh终端.png" alt="事件时间线与网页终端"><br><sub>事件时间线：AI 机位 / 副机位 / 视频一键取证；网页终端可直接执行 msh 命令</sub></td>
+<td width="50%"><img src="screenshots/images/ISP图像参数调节.png" alt="ISP 图像参数"><br><sub>双路 ISP 独立调参：亮度、对比度、饱和度、日夜、白平衡</sub></td>
 </tr>
 <tr>
-<td width="50%"><img src="screenshots/区域留证.png" alt="周界事件留证"><br><sub>周界事件存证：AI 机位带框图；事件同时保存副机位（近景/另一角度）画面</sub></td>
-<td width="50%"><img src="screenshots/视频取证.png" alt="事件短视频取证"><br><sub>事件短视频：前 5 秒 + 后 5 秒，逐帧 MJPEG 播放，可下载 AVI</sub></td>
+<td width="50%"><img src="screenshots/images/区域留证.png" alt="周界事件留证"><br><sub>周界事件存证：AI 机位带框图；事件同时保存副机位（近景/另一角度）画面</sub></td>
+<td width="50%"><a href="screenshots/videos/视频取证.mp4">▶ 播放事件短视频（MP4）</a><br><sub>前 5 秒 + 后 5 秒，逐帧 MJPEG 播放，可下载 AVI</sub></td>
 </tr>
 </table>
 
 ## 实机
 
-![SENTINEL 实机：MC632X 双摄板 + AtomS3R](screenshots/MC632x+ESP32-S3.jpg)
+![SENTINEL 实机：MC632X 双摄板 + AtomS3R](screenshots/images/MC632x+ESP32-S3.jpg)
 
 - 富瀚 MC632X 双摄开发板（DB-XC00），板载 7 寸 800×480 RGB 屏、两路 cv2005 摄像头、SD 卡 与以太网；
 - M5Stack AtomS3R + Echo Base 运行小智固件，通过 Wi-Fi 调用板端 HTTP 接口完成语音播报。
@@ -102,7 +102,7 @@ sentinel-mc632x/
 ├── NOTICE.md                  # 第三方与 SDK 说明
 ├── docs/
 │   └── 使用说明.md            # 编译、烧录、配置、使用、排障
-├── screenshots/               # 演示截图（占位说明）
+├── screenshots/               # images/ 截图 + videos/ 视频
 ├── mc632x/                    # 富瀚 MC632X 端
 │   ├── overlay/               # 相对 SDK 根目录的源码覆盖层
 │   ├── config/                # 参考 .config / config.h
@@ -149,8 +149,9 @@ sentinel-mc632x/
 
 ## 演示材料
 
-- 演示视频：`<待补充 B 站链接>`
-- 实机与看板截图：放在 `screenshots/`（见该目录说明）
+- 事件短视频演示：[screenshots/videos/视频取证.mp4](screenshots/videos/视频取证.mp4)
+- 项目演示视频：`<待补充 B 站链接>`（后续上传）
+- 实机与看板截图：`screenshots/images/`（见该目录说明）
 - 论坛投稿稿（Markdown）：[docs/论坛投稿.md](docs/论坛投稿.md)
 
 ## 适用与限制
