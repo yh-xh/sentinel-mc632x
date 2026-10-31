@@ -151,6 +151,7 @@ sentinel-mc632x/
 
 - 演示视频：`<待补充 B 站链接>`
 - 实机与看板截图：放在 `screenshots/`（见该目录说明）
+- 论坛投稿稿（Markdown）：[docs/论坛投稿.md](docs/论坛投稿.md)
 
 ## 适用与限制
 
