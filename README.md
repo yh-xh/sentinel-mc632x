@@ -67,6 +67,8 @@ M5Stack AtomS3R（小智）← HTTP 轮询 → 语音播报
 
 ![SENTINEL 系统架构分层](screenshots/images/系统架构分层.png)
 
+> 右侧虚线框为**后续规划**的扩展节点（ESP32/STM32，UART/网络），当前版本未实现。
+
 ## RT-Thread 使用情况
 
 | 方面 | 使用方式 |
