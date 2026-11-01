@@ -6,3 +6,6 @@ Thumbs.db
 *.o
 *.a
 *.elf
+
+# 大体积原始演示视频（745MB，GitHub 普通仓库放不下；上传用 faststart 版本见 Release）
+screenshots/videos/嵌赛.mp4

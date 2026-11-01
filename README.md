@@ -169,8 +169,10 @@ I (953737) MCB: announce seq=9 kind=0 (通过/录像)
 
 ## 演示材料
 
+![项目演示视频封面](screenshots/images/视频封面.jpg)
+
 - 事件短视频演示：[screenshots/videos/视频取证.mp4](screenshots/videos/视频取证.mp4)
-- 项目演示视频：`<待补充 B 站链接>`（后续上传）
+- 项目演示视频（14:24）：B 站链接待补（视频文件已就绪，待上传）
 - 实机与看板截图：`screenshots/images/`（见该目录说明）
 - 论坛投稿稿（Markdown）：[docs/论坛投稿.md](docs/论坛投稿.md)
 
