@@ -3,6 +3,8 @@
 > 2026 RT-Thread 嵌入式软件大赛参赛作品
 > 硬件：富瀚 MC632X 双摄开发板 + M5Stack AtomS3R（小智）
 > 软件：RT-Thread（FH_RT V3.4.0 SDK）+ xiaozhi-esp32
+> **演示视频**：[B 站 · 14:24](https://www.bilibili.com/video/BV1XHx46AEoj/)
+> **开源仓库**：<https://github.com/yh-xh/sentinel-mc632x>
 
 SENTINEL 是一套**完全跑在本地、不依赖公网**的双摄边缘 AI 安防系统，面向 24 小时无人便利店、小型仓储、社区车棚这类“没有公网、也不愿把画面传上云”的场景。
 
@@ -172,7 +174,7 @@ I (953737) MCB: announce seq=9 kind=0 (通过/录像)
 ![项目演示视频封面](screenshots/images/视频封面.jpg)
 
 - 事件短视频演示：[screenshots/videos/视频取证.mp4](screenshots/videos/视频取证.mp4)
-- 项目演示视频（14:24）：B 站链接待补（视频文件已就绪，待上传）
+- 项目演示视频（14:24）：[B 站](https://www.bilibili.com/video/BV1XHx46AEoj/)
 - 实机与看板截图：`screenshots/images/`（见该目录说明）
 - 论坛投稿稿（Markdown）：[docs/论坛投稿.md](docs/论坛投稿.md)
 

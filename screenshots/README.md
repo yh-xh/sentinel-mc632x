@@ -27,7 +27,7 @@ screenshots/
 | --- | --- |
 | `视频取证.mp4` | 事件短视频播放演示：网页逐帧播放、下载 AVI（完整版，约 7MB） |
 
-项目整体演示视频后续上传（建议同时放 B 站链接；文件小于 100MB 可直接放本目录，更大的建议放 Release 或 B 站）。
+项目演示视频已发布 B 站：[BV1XHx46AEoj](https://www.bilibili.com/video/BV1XHx46AEoj/)（14:24）；原始文件 745MB，不放进仓库。
 
 ## 说明
 
