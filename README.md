@@ -5,6 +5,7 @@
 > 软件：RT-Thread（FH_RT V3.4.0 SDK）+ xiaozhi-esp32
 > **演示视频**：[B 站 · 14:24](https://www.bilibili.com/video/BV1XHx46AEoj/)
 > **开源仓库**：<https://github.com/yh-xh/sentinel-mc632x>
+> **论坛参赛帖**：<https://club.rt-thread.org/ask/article/9e71373f11ab99d3.html>
 
 SENTINEL 是一套**完全跑在本地、不依赖公网**的双摄边缘 AI 安防系统，面向 24 小时无人便利店、小型仓储、社区车棚这类“没有公网、也不愿把画面传上云”的场景。
 
